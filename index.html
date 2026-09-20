@@ -175,7 +175,6 @@
       border: 1px solid #48534d;
       margin-bottom: 30px;
 
-      /* Image située à la racine du dépôt */
       background:
         linear-gradient(
           to top,
@@ -275,17 +274,33 @@
     .notice {
       display: none;
       margin-top: 20px;
-      padding: 15px;
+      padding: 17px;
       color: #a0f2aa;
       background: #263d2b;
       border: 1px solid #4d8658;
       border-radius: 8px;
-      line-height: 1.5;
+      line-height: 1.6;
       font-size: 14px;
     }
 
     .notice.visible {
       display: block;
+    }
+
+    .eaglecraft-button {
+      margin-top: 14px;
+      padding: 13px 18px;
+      background: #65d875;
+      color: #102016;
+      border: none;
+      border-bottom: 4px solid #348c43;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .eaglecraft-button:hover {
+      background: #80ed8d;
     }
 
     .other-page {
@@ -583,7 +598,7 @@
 
       <p>
         Connecte ton compte Microsoft pour utiliser ton profil Minecraft.
-        Tu peux aussi continuer en joueur invité.
+        Tu peux aussi continuer en joueur invité avec la version de test.
       </p>
 
       <button class="microsoft-button" onclick="microsoftLogin()">
@@ -620,12 +635,30 @@
         "Joueur invité";
 
       document.getElementById("profileStatus").textContent =
-        "Mode hors connexion";
+        "Version de test";
 
       closeLogin();
 
-      showNotice(
-        "Mode joueur invité activé. Tu peux maintenant consulter la configuration."
+      const notice = document.getElementById("notice");
+
+      notice.innerHTML = `
+        <strong>Mode test activé !</strong><br>
+        Cette version de Launchcraft utilise Eaglecraft.
+        <br>
+        Tu peux essayer la version navigateur en cliquant ci-dessous.
+        <br>
+        <button class="eaglecraft-button" onclick="launchEaglecraft()">
+          ▶ LANCER EAGLECRAFT
+        </button>
+      `;
+
+      notice.classList.add("visible");
+    }
+
+    function launchEaglecraft() {
+      window.open(
+        "https://eaglercraft.com/",
+        "_blank"
       );
     }
 
@@ -647,7 +680,7 @@
         version +
         " avec " +
         loader +
-        ". Le lancement réel de Minecraft nécessite encore une application dédiée."
+        ". Pour le moment, utilise le mode test Eaglecraft."
       );
     }
 
@@ -655,7 +688,7 @@
       const notice =
         document.getElementById("notice");
 
-      notice.textContent = message;
+      notice.innerHTML = message;
       notice.classList.add("visible");
     }
 
