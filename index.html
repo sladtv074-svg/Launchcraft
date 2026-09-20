@@ -5,17 +5,619 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Launchcraft</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
     }
 
     body {
-      background: #191919;
+      background: #101216;
       color: white;
+      font-family: Arial, sans-serif;
       min-height: 100vh;
       display: flex;
     }
+
+    button,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .sidebar {
+      width: 245px;
+      min-height: 100vh;
+      background: #171a20;
+      border-right: 1px solid #30343d;
+      padding: 28px 18px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo {
+      color: #63d471;
+      font-family: "Press Start 2P", monospace;
+      font-size: 20px;
+      line-height: 1.6;
+      text-align: center;
+      text-shadow: 3px 3px 0 #263b29;
+      margin-bottom: 45px;
+    }
+
+    .menu-title {
+      color: #777f8d;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin: 0 0 14px 12px;
+      text-transform: uppercase;
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .menu button {
+      background: transparent;
+      border: 0;
+      color: #aeb5c1;
+      padding: 15px 14px;
+      text-align: left;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: 0.2s;
+    }
+
+    .menu button:hover,
+    .menu button.active {
+      background: #29352d;
+      color: #72e481;
+    }
+
+    .sidebar-bottom {
+      margin-top: auto;
+    }
+
+    .profile {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #242932;
+      border: 1px solid #3b424e;
+      border-radius: 9px;
+      color: white;
+      padding: 13px;
+      text-align: left;
+      transition: 0.2s;
+    }
+
+    .profile:hover {
+      background: #303943;
+      border-color: #6bda78;
+    }
+
+    .avatar {
+      width: 35px;
+      height: 35px;
+      background: #5cbd68;
+      color: #102015;
+      display: grid;
+      place-items: center;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .profile-text strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .profile-text small {
+      display: block;
+      color: #8e98a7;
+      margin-top: 3px;
+    }
+
+    .main {
+      flex: 1;
+      padding: 30px;
+      overflow: hidden;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .page-title {
+      font-size: 27px;
+      font-weight: bold;
+    }
+
+    .status {
+      color: #73df82;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #73df82;
+      box-shadow: 0 0 10px #73df82;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 315px;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 1px solid #414b45;
+      background:
+        linear-gradient(to top, rgba(9, 16, 11, 0.95), rgba(9, 16, 11, 0.08)),
+        linear-gradient(135deg, #6b9b58 0%, #9fc879 35%, #526e9a 36%, #354e75 100%);
+      margin-bottom: 28px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.45;
+      background:
+        linear-gradient(135deg, transparent 55%, rgba(255,255,255,0.12) 55%),
+        repeating-linear-gradient(
+          90deg,
+          transparent 0,
+          transparent 38px,
+          rgba(255,255,255,0.06) 39px,
+          transparent 40px
+        );
+    }
+
+    .pixel-sun {
+      position: absolute;
+      width: 75px;
+      height: 75px;
+      right: 13%;
+      top: 40px;
+      background: #f4dc83;
+      box-shadow:
+        10px 0 #f4dc83,
+        -10px 0 #f4dc83,
+        0 10px #f4dc83,
+        0 -10px #f4dc83;
+      opacity: 0.9;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 42px;
+      margin-top: 100px;
+    }
+
+    .hero-content h1 {
+      font-family: "Press Start 2P", monospace;
+      font-size: 27px;
+      line-height: 1.7;
+      text-shadow: 4px 4px 0 #202b20;
+      max-width: 650px;
+    }
+
+    .hero-content p {
+      color: #d4dfd4;
+      margin-top: 12px;
+      font-size: 16px;
+    }
+
+    .play-button {
+      margin-top: 25px;
+      background: #61d36e;
+      color: #102014;
+      border: 0;
+      border-bottom: 5px solid #348d43;
+      padding: 15px 28px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 15px;
+      transition: 0.15s;
+    }
+
+    .play-button:hover {
+      background: #7be986;
+      transform: translateY(-2px);
+    }
+
+    .play-button:active {
+      transform: translateY(3px);
+      border-bottom-width: 2px;
+    }
+
+    .section-title {
+      font-size: 19px;
+      margin-bottom: 16px;
+    }
+
+    .settings {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .setting-card {
+      background: #191e26;
+      border: 1px solid #303641;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    .setting-card label {
+      display: block;
+      color: #a8b0bd;
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    select {
+      width: 100%;
+      padding: 13px;
+      color: white;
+      background: #282e38;
+      border: 1px solid #454d5b;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    select:focus {
+      border-color: #65d875;
+    }
+
+    .modal-background {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+      padding: 20px;
+    }
+
+    .modal-background.visible {
+      display: flex;
+    }
+
+    .modal {
+      width: 100%;
+      max-width: 430px;
+      background: #1b2028;
+      border: 1px solid #424b58;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 20px 70px rgba(0,0,0,0.5);
+    }
+
+    .modal h2 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .modal p {
+      color: #aab3c0;
+      line-height: 1.5;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    .microsoft-button {
+      width: 100%;
+      background: #ffffff;
+      color: #222222;
+      border: 0;
+      border-radius: 5px;
+      padding: 14px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .guest-button {
+      width: 100%;
+      background: #65d875;
+      color: #102014;
+      border: 0;
+      border-radius: 5px;
+      padding: 14px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .close-button {
+      width: 100%;
+      background: #303743;
+      color: white;
+      border: 0;
+      border-radius: 5px;
+      padding: 12px;
+    }
+
+    .notice {
+      display: none;
+      background: #293c2d;
+      color: #9af2a5;
+      border: 1px solid #477c50;
+      border-radius: 8px;
+      padding: 13px;
+      margin-top: 18px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .notice.visible {
+      display: block;
+    }
+
+    @media (max-width: 800px) {
+      body {
+        display: block;
+      }
+
+      .sidebar {
+        width: 100%;
+        min-height: auto;
+        border-right: 0;
+        border-bottom: 1px solid #30343d;
+        padding: 18px;
+      }
+
+      .logo {
+        margin-bottom: 20px;
+      }
+
+      .menu {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .menu button {
+        padding: 10px;
+      }
+
+      .sidebar-bottom {
+        margin-top: 18px;
+      }
+
+      .main {
+        padding: 18px;
+      }
+
+      .hero-content {
+        padding: 25px;
+        margin-top: 90px;
+      }
+
+      .hero-content h1 {
+        font-size: 19px;
+      }
+
+      .settings {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <aside class="sidebar">
+    <div class="logo">LAUNCH<br>CRAFT</div>
+
+    <div class="menu-title">Navigation</div>
+
+    <nav class="menu">
+      <button class="active" onclick="showPage('home')">⌂ Accueil</button>
+      <button onclick="showPage('versions')">▣ Versions</button>
+      <button onclick="showPage('news')">◈ Actualités</button>
+      <button onclick="showPage('settings')">⚙ Paramètres</button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <button class="profile" onclick="openLogin()">
+        <div class="avatar">?</div>
+        <div class="profile-text">
+          <strong id="profileName">Joueur invité</strong>
+          <small id="profileStatus">Non connecté</small>
+        </div>
+      </button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="topbar">
+      <div class="page-title" id="pageTitle">Accueil</div>
+
+      <div class="status">
+        <span class="status-dot"></span>
+        Système prêt
+      </div>
+    </div>
+
+    <section id="homePage">
+      <div class="hero">
+        <div class="pixel-sun"></div>
+
+        <div class="hero-content">
+          <h1>PRÊT POUR<br>UNE NOUVELLE AVENTURE ?</h1>
+          <p>Lance Minecraft Java depuis Launchcraft.</p>
+
+          <button class="play-button" onclick="launchGame()">
+            ▶ JOUER
+          </button>
+        </div>
+      </div>
+
+      <h2 class="section-title">Configuration du jeu</h2>
+
+      <div class="settings">
+        <div class="setting-card">
+          <label for="version">Version de Minecraft</label>
+
+          <select id="version">
+            <option>Minecraft 1.21.8</option>
+            <option>Minecraft 1.21.5</option>
+            <option>Minecraft 1.20.1</option>
+            <option>Minecraft 1.19.4</option>
+            <option>Minecraft 1.16.5</option>
+            <option>Minecraft 1.12.2</option>
+            <option>Minecraft 1.8.9</option>
+          </select>
+        </div>
+
+        <div class="setting-card">
+          <label for="loader">Modloader</label>
+
+          <select id="loader">
+            <option>Vanilla</option>
+            <option>Fabric</option>
+            <option>Forge</option>
+            <option>NeoForge</option>
+            <option>Quilt</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="notice" id="notice"></div>
+    </section>
+
+    <section id="otherPage" style="display: none;">
+      <div class="setting-card">
+        <h2 id="otherTitle">Page</h2>
+        <p id="otherText" style="color:#aab3c0; margin-top:12px;">
+          Cette section sera bientôt disponible.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-background" id="loginModal">
+    <div class="modal">
+      <h2>Connexion</h2>
+
+      <p>
+        Connecte ton compte Microsoft pour utiliser ton profil Minecraft.
+        La connexion Microsoft réelle devra être configurée séparément.
+      </p>
+
+      <button class="microsoft-button" onclick="microsoftLogin()">
+        Se connecter avec Microsoft
+      </button>
+
+      <button class="guest-button" onclick="guestLogin()">
+        Continuer en joueur invité
+      </button>
+
+      <button class="close-button" onclick="closeLogin()">
+        Annuler
+      </button>
+    </div>
+  </div>
+
+  <script>
+    function openLogin() {
+      document.getElementById("loginModal").classList.add("visible");
+    }
+
+    function closeLogin() {
+      document.getElementById("loginModal").classList.remove("visible");
+    }
+
+    function guestLogin() {
+      document.getElementById("profileName").textContent = "Joueur invité";
+      document.getElementById("profileStatus").textContent = "Mode hors connexion";
+      closeLogin();
+      showNotice("Mode joueur invité activé. Aucune connexion Microsoft n’est utilisée.");
+    }
+
+    function microsoftLogin() {
+      showNotice("La connexion Microsoft nécessite une configuration OAuth officielle. Le bouton d’interface est prêt, mais l’authentification n’est pas encore connectée.");
+      closeLogin();
+    }
+
+    function launchGame() {
+      const version = document.getElementById("version").value;
+      const loader = document.getElementById("loader").value;
+
+      showNotice(
+        "Configuration sélectionnée : " +
+        version +
+        " avec " +
+        loader +
+        ". Un launcher web ne peut pas lancer directement Minecraft Java sans application ou système de lancement installé."
+      );
+    }
+
+    function showNotice(message) {
+      const notice = document.getElementById("notice");
+      notice.textContent = message;
+      notice.classList.add("visible");
+    }
+
+    function showPage(page) {
+      const homePage = document.getElementById("homePage");
+      const otherPage = document.getElementById("otherPage");
+      const pageTitle = document.getElementById("pageTitle");
+      const otherTitle = document.getElementById("otherTitle");
+      const otherText = document.getElementById("otherText");
+
+      document.querySelectorAll(".menu button").forEach(button => {
+        button.classList.remove("active");
+      });
+
+      event.target.classList.add("active");
+
+      if (page === "home") {
+        homePage.style.display = "block";
+        otherPage.style.display = "none";
+        pageTitle.textContent = "Accueil";
+      } else {
+        homePage.style.display = "none";
+        otherPage.style.display = "block";
+        pageTitle.textContent =
+          page.charAt(0).toUpperCase() + page.slice(1);
+
+        otherTitle.textContent =
+          page.charAt(0).toUpperCase() + page.slice(1);
+
+        otherText.textContent =
+          "Cette section de Launchcraft sera bientôt disponible.";
+      }
+    }
+
+    window.addEventListener("click", function(event) {
+      const modal = document.getElementById("loginModal");
+
+      if (event.target === modal) {
+        closeLogin();
+      }
+    });
+  </script>
+
+</body>
+</html>
