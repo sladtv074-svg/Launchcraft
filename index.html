@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Launchcraft</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,11 +18,11 @@
     }
 
     body {
+      min-height: 100vh;
+      display: flex;
       background: #101216;
       color: white;
       font-family: Arial, sans-serif;
-      min-height: 100vh;
-      display: flex;
     }
 
     button,
@@ -34,32 +35,31 @@
     }
 
     .sidebar {
-      width: 245px;
+      width: 250px;
       min-height: 100vh;
-      background: #171a20;
-      border-right: 1px solid #30343d;
+      background: #171b21;
+      border-right: 1px solid #343b46;
       padding: 28px 18px;
       display: flex;
       flex-direction: column;
     }
 
     .logo {
-      color: #63d471;
+      color: #65dc76;
       font-family: "Press Start 2P", monospace;
-      font-size: 20px;
-      line-height: 1.6;
+      font-size: 21px;
+      line-height: 1.8;
       text-align: center;
-      text-shadow: 3px 3px 0 #263b29;
-      margin-bottom: 45px;
+      text-shadow: 4px 4px #263d2b;
+      margin-bottom: 48px;
     }
 
-    .menu-title {
-      color: #777f8d;
+    .navigation-title {
+      color: #7e8795;
       font-size: 11px;
       font-weight: bold;
       letter-spacing: 2px;
       margin: 0 0 14px 12px;
-      text-transform: uppercase;
     }
 
     .menu {
@@ -69,180 +69,162 @@
     }
 
     .menu button {
+      color: #b4bcc8;
       background: transparent;
-      border: 0;
-      color: #aeb5c1;
-      padding: 15px 14px;
+      border: none;
+      border-radius: 9px;
+      padding: 15px;
       text-align: left;
-      border-radius: 8px;
       font-size: 15px;
       transition: 0.2s;
     }
 
     .menu button:hover,
     .menu button.active {
-      background: #29352d;
-      color: #72e481;
+      background: #293a2e;
+      color: #70e981;
     }
 
-    .sidebar-bottom {
+    .profile-area {
       margin-top: auto;
     }
 
-    .profile {
+    .profile-button {
       width: 100%;
       display: flex;
       align-items: center;
-      gap: 10px;
-      background: #242932;
-      border: 1px solid #3b424e;
-      border-radius: 9px;
-      color: white;
+      gap: 11px;
+      background: #252c36;
+      border: 1px solid #414b59;
+      border-radius: 10px;
       padding: 13px;
+      color: white;
       text-align: left;
       transition: 0.2s;
     }
 
-    .profile:hover {
-      background: #303943;
-      border-color: #6bda78;
+    .profile-button:hover {
+      background: #303b47;
+      border-color: #70df7d;
     }
 
     .avatar {
-      width: 35px;
-      height: 35px;
-      background: #5cbd68;
-      color: #102015;
+      width: 38px;
+      height: 38px;
       display: grid;
       place-items: center;
-      border-radius: 5px;
+      border-radius: 6px;
+      background: #5fd070;
+      color: #122017;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .profile-name {
+      display: block;
+      font-size: 13px;
       font-weight: bold;
     }
 
-    .profile-text strong {
+    .profile-status {
       display: block;
-      font-size: 13px;
-    }
-
-    .profile-text small {
-      display: block;
-      color: #8e98a7;
-      margin-top: 3px;
+      color: #929eae;
+      font-size: 12px;
+      margin-top: 5px;
     }
 
     .main {
       flex: 1;
+      min-width: 0;
       padding: 30px;
-      overflow: hidden;
     }
 
     .topbar {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 28px;
     }
 
     .page-title {
-      font-size: 27px;
+      font-size: 28px;
       font-weight: bold;
     }
 
-    .status {
-      color: #73df82;
-      font-size: 13px;
+    .system-status {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
+      color: #73df82;
+      font-size: 13px;
     }
 
     .status-dot {
-      width: 8px;
-      height: 8px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: #73df82;
-      box-shadow: 0 0 10px #73df82;
+      box-shadow: 0 0 12px #73df82;
     }
 
     .hero {
       position: relative;
-      min-height: 315px;
-      border-radius: 15px;
+      min-height: 390px;
       overflow: hidden;
-      border: 1px solid #414b45;
-      background:
-        linear-gradient(to top, rgba(9, 16, 11, 0.95), rgba(9, 16, 11, 0.08)),
-        linear-gradient(135deg, #6b9b58 0%, #9fc879 35%, #526e9a 36%, #354e75 100%);
-      margin-bottom: 28px;
-    }
+      border-radius: 16px;
+      border: 1px solid #48534d;
+      margin-bottom: 30px;
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      opacity: 0.45;
+      /* Image située à la racine du dépôt */
       background:
-        linear-gradient(135deg, transparent 55%, rgba(255,255,255,0.12) 55%),
-        repeating-linear-gradient(
-          90deg,
-          transparent 0,
-          transparent 38px,
-          rgba(255,255,255,0.06) 39px,
-          transparent 40px
-        );
-    }
+        linear-gradient(
+          to top,
+          rgba(8, 13, 10, 0.96),
+          rgba(8, 13, 10, 0.05)
+        ),
+        url("banner.png");
 
-    .pixel-sun {
-      position: absolute;
-      width: 75px;
-      height: 75px;
-      right: 13%;
-      top: 40px;
-      background: #f4dc83;
-      box-shadow:
-        10px 0 #f4dc83,
-        -10px 0 #f4dc83,
-        0 10px #f4dc83,
-        0 -10px #f4dc83;
-      opacity: 0.9;
+      background-size: cover;
+      background-position: center;
     }
 
     .hero-content {
-      position: relative;
-      z-index: 1;
-      padding: 42px;
-      margin-top: 100px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 40px;
     }
 
-    .hero-content h1 {
+    .hero-title {
       font-family: "Press Start 2P", monospace;
       font-size: 27px;
-      line-height: 1.7;
-      text-shadow: 4px 4px 0 #202b20;
-      max-width: 650px;
+      line-height: 1.8;
+      max-width: 850px;
+      text-shadow: 4px 4px #172019;
     }
 
-    .hero-content p {
-      color: #d4dfd4;
-      margin-top: 12px;
-      font-size: 16px;
+    .hero-description {
+      color: #d3ddd5;
+      font-size: 17px;
+      margin-top: 13px;
     }
 
     .play-button {
       margin-top: 25px;
-      background: #61d36e;
-      color: #102014;
-      border: 0;
-      border-bottom: 5px solid #348d43;
-      padding: 15px 28px;
-      border-radius: 6px;
+      padding: 16px 30px;
+      background: #61d472;
+      color: #102016;
+      border: none;
+      border-bottom: 5px solid #348c43;
+      border-radius: 7px;
+      font-size: 16px;
       font-weight: bold;
-      font-size: 15px;
-      transition: 0.15s;
+      transition: 0.2s;
     }
 
     .play-button:hover {
-      background: #7be986;
+      background: #7bea89;
       transform: translateY(-2px);
     }
 
@@ -252,53 +234,79 @@
     }
 
     .section-title {
-      font-size: 19px;
-      margin-bottom: 16px;
+      font-size: 20px;
+      margin-bottom: 17px;
     }
 
     .settings {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      gap: 20px;
     }
 
     .setting-card {
-      background: #191e26;
-      border: 1px solid #303641;
-      border-radius: 10px;
-      padding: 20px;
+      background: #191f27;
+      border: 1px solid #343d49;
+      border-radius: 11px;
+      padding: 21px;
     }
 
     .setting-card label {
       display: block;
-      color: #a8b0bd;
+      color: #aeb7c4;
       font-size: 13px;
-      margin-bottom: 10px;
+      margin-bottom: 11px;
     }
 
     select {
       width: 100%;
-      padding: 13px;
       color: white;
-      background: #282e38;
-      border: 1px solid #454d5b;
-      border-radius: 6px;
+      background: #29313d;
+      border: 1px solid #4b5666;
+      border-radius: 7px;
+      padding: 14px;
       outline: none;
     }
 
     select:focus {
-      border-color: #65d875;
+      border-color: #6de17b;
+    }
+
+    .notice {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      color: #a0f2aa;
+      background: #263d2b;
+      border: 1px solid #4d8658;
+      border-radius: 8px;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .notice.visible {
+      display: block;
+    }
+
+    .other-page {
+      display: none;
+    }
+
+    .other-page p {
+      color: #aeb8c5;
+      margin-top: 14px;
+      line-height: 1.5;
     }
 
     .modal-background {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.72);
+      z-index: 50;
       display: none;
       align-items: center;
       justify-content: center;
-      z-index: 20;
       padding: 20px;
+      background: rgba(0, 0, 0, 0.78);
     }
 
     .modal-background.visible {
@@ -308,70 +316,47 @@
     .modal {
       width: 100%;
       max-width: 430px;
-      background: #1b2028;
-      border: 1px solid #424b58;
-      border-radius: 12px;
-      padding: 28px;
-      box-shadow: 0 20px 70px rgba(0,0,0,0.5);
+      padding: 29px;
+      background: #1b222b;
+      border: 1px solid #46515f;
+      border-radius: 13px;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
     }
 
     .modal h2 {
-      font-size: 22px;
-      margin-bottom: 12px;
+      font-size: 23px;
+      margin-bottom: 13px;
     }
 
     .modal p {
-      color: #aab3c0;
-      line-height: 1.5;
+      color: #aeb8c5;
       font-size: 14px;
-      margin-bottom: 22px;
+      line-height: 1.6;
+      margin-bottom: 23px;
+    }
+
+    .modal button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 6px;
+      border: none;
+      font-weight: bold;
+      margin-bottom: 10px;
     }
 
     .microsoft-button {
-      width: 100%;
-      background: #ffffff;
-      color: #222222;
-      border: 0;
-      border-radius: 5px;
-      padding: 14px;
-      font-weight: bold;
-      margin-bottom: 10px;
+      background: white;
+      color: #222;
     }
 
     .guest-button {
-      width: 100%;
       background: #65d875;
-      color: #102014;
-      border: 0;
-      border-radius: 5px;
-      padding: 14px;
-      font-weight: bold;
-      margin-bottom: 10px;
+      color: #102016;
     }
 
-    .close-button {
-      width: 100%;
-      background: #303743;
+    .cancel-button {
+      background: #303947;
       color: white;
-      border: 0;
-      border-radius: 5px;
-      padding: 12px;
-    }
-
-    .notice {
-      display: none;
-      background: #293c2d;
-      color: #9af2a5;
-      border: 1px solid #477c50;
-      border-radius: 8px;
-      padding: 13px;
-      margin-top: 18px;
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .notice.visible {
-      display: block;
     }
 
     @media (max-width: 800px) {
@@ -382,13 +367,13 @@
       .sidebar {
         width: 100%;
         min-height: auto;
-        border-right: 0;
-        border-bottom: 1px solid #30343d;
-        padding: 18px;
+        border-right: none;
+        border-bottom: 1px solid #343b46;
+        padding: 20px;
       }
 
       .logo {
-        margin-bottom: 20px;
+        margin-bottom: 25px;
       }
 
       .menu {
@@ -397,28 +382,37 @@
       }
 
       .menu button {
-        padding: 10px;
+        padding: 11px;
       }
 
-      .sidebar-bottom {
-        margin-top: 18px;
+      .profile-area {
+        margin-top: 20px;
       }
 
       .main {
         padding: 18px;
       }
 
-      .hero-content {
-        padding: 25px;
-        margin-top: 90px;
+      .hero {
+        min-height: 430px;
       }
 
-      .hero-content h1 {
-        font-size: 19px;
+      .hero-content {
+        padding: 25px;
+      }
+
+      .hero-title {
+        font-size: 18px;
       }
 
       .settings {
         grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
       }
     }
   </style>
@@ -427,57 +421,105 @@
 <body>
 
   <aside class="sidebar">
-    <div class="logo">LAUNCH<br>CRAFT</div>
 
-    <div class="menu-title">Navigation</div>
+    <div class="logo">
+      LAUNCH<br>
+      CRAFT
+    </div>
+
+    <div class="navigation-title">
+      NAVIGATION
+    </div>
 
     <nav class="menu">
-      <button class="active" onclick="showPage('home')">⌂ Accueil</button>
-      <button onclick="showPage('versions')">▣ Versions</button>
-      <button onclick="showPage('news')">◈ Actualités</button>
-      <button onclick="showPage('settings')">⚙ Paramètres</button>
+      <button class="active" onclick="showPage('home', this)">
+        ⌂ Accueil
+      </button>
+
+      <button onclick="showPage('versions', this)">
+        ▣ Versions
+      </button>
+
+      <button onclick="showPage('news', this)">
+        ◈ Actualités
+      </button>
+
+      <button onclick="showPage('settings', this)">
+        ⚙ Paramètres
+      </button>
     </nav>
 
-    <div class="sidebar-bottom">
-      <button class="profile" onclick="openLogin()">
-        <div class="avatar">?</div>
-        <div class="profile-text">
-          <strong id="profileName">Joueur invité</strong>
-          <small id="profileStatus">Non connecté</small>
+    <div class="profile-area">
+      <button class="profile-button" onclick="openLogin()">
+
+        <div class="avatar">
+          ?
         </div>
+
+        <div>
+          <span class="profile-name" id="profileName">
+            Joueur invité
+          </span>
+
+          <span class="profile-status" id="profileStatus">
+            Non connecté
+          </span>
+        </div>
+
       </button>
     </div>
+
   </aside>
 
   <main class="main">
-    <div class="topbar">
-      <div class="page-title" id="pageTitle">Accueil</div>
 
-      <div class="status">
+    <div class="topbar">
+
+      <div class="page-title" id="pageTitle">
+        Accueil
+      </div>
+
+      <div class="system-status">
         <span class="status-dot"></span>
         Système prêt
       </div>
+
     </div>
 
     <section id="homePage">
+
       <div class="hero">
-        <div class="pixel-sun"></div>
 
         <div class="hero-content">
-          <h1>PRÊT POUR<br>UNE NOUVELLE AVENTURE ?</h1>
-          <p>Lance Minecraft Java depuis Launchcraft.</p>
+
+          <h1 class="hero-title">
+            PRÊT POUR<br>
+            UNE NOUVELLE AVENTURE ?
+          </h1>
+
+          <p class="hero-description">
+            Ton expérience Minecraft Java commence ici.
+          </p>
 
           <button class="play-button" onclick="launchGame()">
             ▶ JOUER
           </button>
+
         </div>
+
       </div>
 
-      <h2 class="section-title">Configuration du jeu</h2>
+      <h2 class="section-title">
+        Configuration du jeu
+      </h2>
 
       <div class="settings">
+
         <div class="setting-card">
-          <label for="version">Version de Minecraft</label>
+
+          <label for="version">
+            Version de Minecraft
+          </label>
 
           <select id="version">
             <option>Minecraft 1.21.8</option>
@@ -488,10 +530,14 @@
             <option>Minecraft 1.12.2</option>
             <option>Minecraft 1.8.9</option>
           </select>
+
         </div>
 
         <div class="setting-card">
-          <label for="loader">Modloader</label>
+
+          <label for="loader">
+            Modloader
+          </label>
 
           <select id="loader">
             <option>Vanilla</option>
@@ -500,29 +546,44 @@
             <option>NeoForge</option>
             <option>Quilt</option>
           </select>
+
         </div>
+
       </div>
 
       <div class="notice" id="notice"></div>
+
     </section>
 
-    <section id="otherPage" style="display: none;">
+    <section class="other-page" id="otherPage">
+
       <div class="setting-card">
-        <h2 id="otherTitle">Page</h2>
-        <p id="otherText" style="color:#aab3c0; margin-top:12px;">
+
+        <h2 id="otherTitle">
+          Section
+        </h2>
+
+        <p id="otherText">
           Cette section sera bientôt disponible.
         </p>
+
       </div>
+
     </section>
+
   </main>
 
   <div class="modal-background" id="loginModal">
+
     <div class="modal">
-      <h2>Connexion</h2>
+
+      <h2>
+        Connexion
+      </h2>
 
       <p>
         Connecte ton compte Microsoft pour utiliser ton profil Minecraft.
-        La connexion Microsoft réelle devra être configurée séparément.
+        Tu peux aussi continuer en joueur invité.
       </p>
 
       <button class="microsoft-button" onclick="microsoftLogin()">
@@ -533,64 +594,94 @@
         Continuer en joueur invité
       </button>
 
-      <button class="close-button" onclick="closeLogin()">
+      <button class="cancel-button" onclick="closeLogin()">
         Annuler
       </button>
+
     </div>
+
   </div>
 
   <script>
     function openLogin() {
-      document.getElementById("loginModal").classList.add("visible");
+      document
+        .getElementById("loginModal")
+        .classList.add("visible");
     }
 
     function closeLogin() {
-      document.getElementById("loginModal").classList.remove("visible");
+      document
+        .getElementById("loginModal")
+        .classList.remove("visible");
     }
 
     function guestLogin() {
-      document.getElementById("profileName").textContent = "Joueur invité";
-      document.getElementById("profileStatus").textContent = "Mode hors connexion";
+      document.getElementById("profileName").textContent =
+        "Joueur invité";
+
+      document.getElementById("profileStatus").textContent =
+        "Mode hors connexion";
+
       closeLogin();
-      showNotice("Mode joueur invité activé. Aucune connexion Microsoft n’est utilisée.");
+
+      showNotice(
+        "Mode joueur invité activé. Tu peux maintenant consulter la configuration."
+      );
     }
 
     function microsoftLogin() {
-      showNotice("La connexion Microsoft nécessite une configuration OAuth officielle. Le bouton d’interface est prêt, mais l’authentification n’est pas encore connectée.");
-      closeLogin();
+      alert(
+        "La connexion Microsoft réelle doit encore être configurée avec Microsoft OAuth."
+      );
     }
 
     function launchGame() {
-      const version = document.getElementById("version").value;
-      const loader = document.getElementById("loader").value;
+      const version =
+        document.getElementById("version").value;
+
+      const loader =
+        document.getElementById("loader").value;
 
       showNotice(
         "Configuration sélectionnée : " +
         version +
         " avec " +
         loader +
-        ". Un launcher web ne peut pas lancer directement Minecraft Java sans application ou système de lancement installé."
+        ". Le lancement réel de Minecraft nécessite encore une application dédiée."
       );
     }
 
     function showNotice(message) {
-      const notice = document.getElementById("notice");
+      const notice =
+        document.getElementById("notice");
+
       notice.textContent = message;
       notice.classList.add("visible");
     }
 
-    function showPage(page) {
-      const homePage = document.getElementById("homePage");
-      const otherPage = document.getElementById("otherPage");
-      const pageTitle = document.getElementById("pageTitle");
-      const otherTitle = document.getElementById("otherTitle");
-      const otherText = document.getElementById("otherText");
+    function showPage(page, clickedButton) {
+      const homePage =
+        document.getElementById("homePage");
 
-      document.querySelectorAll(".menu button").forEach(button => {
-        button.classList.remove("active");
-      });
+      const otherPage =
+        document.getElementById("otherPage");
 
-      event.target.classList.add("active");
+      const pageTitle =
+        document.getElementById("pageTitle");
+
+      const otherTitle =
+        document.getElementById("otherTitle");
+
+      const otherText =
+        document.getElementById("otherText");
+
+      document
+        .querySelectorAll(".menu button")
+        .forEach(button => {
+          button.classList.remove("active");
+        });
+
+      clickedButton.classList.add("active");
 
       if (page === "home") {
         homePage.style.display = "block";
@@ -599,6 +690,7 @@
       } else {
         homePage.style.display = "none";
         otherPage.style.display = "block";
+
         pageTitle.textContent =
           page.charAt(0).toUpperCase() + page.slice(1);
 
@@ -611,7 +703,8 @@
     }
 
     window.addEventListener("click", function(event) {
-      const modal = document.getElementById("loginModal");
+      const modal =
+        document.getElementById("loginModal");
 
       if (event.target === modal) {
         closeLogin();
